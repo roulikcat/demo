@@ -10,8 +10,9 @@ public class SecurityConfig extends WebSecurityConfiguration {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
+                .requestMatchers("/list_user").permitAll()
                 .requestMatchers("/login/oauth2/code/wso2/**").permitAll() // Allow the OAuth2 callback endpoint
-                .anyRequest().authenticated() // Secure other endpoints
+                .anyRequest().permitAll()
             .and()
             .oauth2Login()
                 .loginPage("/login") // Specify login page if needed
